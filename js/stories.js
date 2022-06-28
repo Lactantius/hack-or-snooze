@@ -58,6 +58,7 @@ function submitNewStory() {
 
   storyList.addStory(currentUser, { title, author, url });
   $addStoryForm.hide();
+  putStoriesOnPage();
 }
 
 $addStoryForm.on("submit", (evt) => {

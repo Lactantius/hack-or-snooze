@@ -35,7 +35,9 @@
     <nav>
       <div class="navbar-brand">
         <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
-        <a class="nav-link" href="#" id="nav-add-story">submit</a>
+        <a class="nav-link main-nav-links hidden" href="#" id="nav-add-story"
+          >submit</a
+        >
       </div>
       <div class="nav-right">
         <a class="nav-link" href="#" id="nav-login">login/signup</a>
@@ -47,12 +49,26 @@
     <!-- area for submitting a new story -->
     <section class="add-story-container container">
       <form action="#" class="hidden" id="add-story-form">
-        <label for="input-story-author">Story</label>
-        <input type="text" id="input-story-author" placeholder="story title" />
-        <label for="input-story-title">Author</label>
-        <input type="text" id="input-story-title" placeholder="story author" />
-        <label for="input-story-url">Url</label>
-        <input type="text" id="input-story-url" placeholder="story url" />
+        <div>
+          <label for="input-story-author">Story</label>
+          <input
+            type="text"
+            id="input-story-author"
+            placeholder="story title"
+          />
+        </div>
+        <div>
+          <label for="input-story-title">Author</label>
+          <input
+            type="text"
+            id="input-story-title"
+            placeholder="story author"
+          />
+        </div>
+        <div>
+          <label for="input-story-url">Url</label>
+          <input type="text" id="input-story-url" placeholder="story url" />
+        </div>
         <button type="submit">submit</button>
       </form>
       <hr />
