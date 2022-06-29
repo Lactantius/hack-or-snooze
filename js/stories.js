@@ -51,13 +51,14 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
-function submitNewStory() {
+async function submitNewStory() {
   const title = $("#input-story-title").val();
   const author = $("#input-story-author").val();
   const url = $("#input-story-url").val();
 
-  storyList.addStory(currentUser, { title, author, url });
   $addStoryForm.hide();
+  await storyList.addStory(currentUser, { title, author, url });
+  storyList = await StoryList.getStories();
   putStoriesOnPage();
 }
 
