@@ -51,6 +51,30 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
+function putFavoritesOnPage() {
+  console.debug("putFavoritesOnPage");
+
+  $allStoriesList.empty();
+
+  currentUser.favorites.forEach((story) =>
+    $allStoriesList.append(generateStoryMarkup(story))
+  );
+
+  $allStoriesList.show();
+}
+
+function putUserStoriesOnPage(user) {
+  console.debug("putUserStoriesOnPage");
+
+  $allStoriesList.empty();
+
+  user.ownStories.forEach((story) =>
+    $allStoriesList.append(generateStoryMarkup(story))
+  );
+
+  $allStoriesList.show();
+}
+
 async function submitNewStory() {
   const title = $("#input-story-title").val();
   const author = $("#input-story-author").val();
