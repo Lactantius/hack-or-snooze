@@ -26,9 +26,9 @@ function generateStoryMarkup(story) {
   return $(`
       <li id="${story.storyId}">
         ${story.isOwn() ? '<button class="delete-story-btn">X</button>' : ""}
-        <input type="checkbox" class="favorite-checkbox" ${
-          story.isFavorite() ? "checked" : ""
-        }>
+        <input type="checkbox" class="favorite-checkbox" id="${
+          story.storyId
+        }" ${story.isFavorite() ? "checked" : ""} />
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>

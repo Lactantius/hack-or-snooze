@@ -47,3 +47,21 @@
   margin: 5px 0 5px 0;
   padding: 4px;
 }
+
+/** Checkbox hack modified from https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css/69164710#69164710 */
+
+.favorite-checkbox:focus {
+    outline: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.favorite-checkbox {
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  background: #f6f6ef url("../img/star-regular.svg") 0px 1px no-repeat;
+}
+
+.favorite-checkbox:checked {
+  background: #f6f6ef url("../img/star-solid.svg") 0px 1px no-repeat;
+}
