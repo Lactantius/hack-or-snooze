@@ -25,6 +25,7 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+        ${story.isOwn() ? '<button class="delete-story-btn">X</button>' : ""}
         <input type="checkbox" class="favorite-checkbox" ${
           story.isFavorite() ? "checked" : ""
         }>
@@ -89,12 +90,15 @@ async function submitNewStory() {
   await storyList.addStory(currentUser, { title, author, url });
   storyList = await StoryList.getStories();
   putStoriesOnPage();
+  $addStoryForm.val("");
 }
 
 $addStoryForm.on("submit", (evt) => {
   evt.preventDefault();
   submitNewStory();
 });
+
+$("#cancel-submit-btn").on("click", () => $addStoryForm.hide());
 
 /** Favorites and deleting */
 
@@ -104,4 +108,11 @@ $allStoriesList.on("click", ".favorite-checkbox", function () {
   story.isFavorite()
     ? currentUser.removeFavorite(story)
     : currentUser.addFavorite(story);
+});
+
+$allStoriesList.on("click", ".delete-story-btn", function () {
+  const id = $(this).parent().attr("id");
+  const story = storyList.getStoryById(id);
+  storyList.deleteStory(currentUser, story);
+  $(this).parent().remove();
 });

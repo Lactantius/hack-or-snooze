@@ -80,7 +80,7 @@ form input:focus {
   box-shadow: 0 0 4px 1px darkgray;
 }
 
-form > button {
+button {
   width: 4rem;
   margin: 5px 0 15px 65px;
   border: none;
@@ -93,7 +93,7 @@ form > button {
   transition: all 0.15s;
 }
 
-form > button:hover {
+button:hover {
   background-color: dimgray;
 }
 

@@ -37,3 +37,13 @@
 .story-user {
   display: block;
 }
+
+.delete-story-btn {
+  background-color: #ff6622;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: auto;
+  margin: 5px 0 5px 0;
+  padding: 4px;
+}

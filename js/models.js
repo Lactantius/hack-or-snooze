@@ -32,6 +32,10 @@ class Story {
       (favorite) => favorite.storyId === this.storyId
     );
   }
+
+  isOwn() {
+    return currentUser.ownStories.some((s) => s.storyId === this.storyId);
+  }
 }
 
 /******************************************************************************
@@ -87,6 +91,7 @@ class StoryList {
       story: newStory,
     });
 
+    user.ownStories.push(new Story(story.data.story));
     return story;
   }
 
@@ -94,6 +99,8 @@ class StoryList {
     const res = await axios.delete(`${BASE_URL}/stories/${story.storyId}`, {
       data: { token: user.loginToken },
     });
+    const index = user.ownStories.findIndex((s) => s.storyId === story.storyId);
+    user.ownStories.splice(index, 1);
     return res;
   }
 }
