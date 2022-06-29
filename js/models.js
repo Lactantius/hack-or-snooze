@@ -201,8 +201,16 @@ class User {
       `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
       { token: this.loginToken }
     );
+    this.favorites = res.data.user.favorites;
     return res;
   }
 
-  removeFavorite(story) {}
+  async removeFavorite(story) {
+    const res = await axios.delete(
+      `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      { data: { token: this.loginToken } }
+    );
+    this.favorites = res.data.user.favorites;
+    return res;
+  }
 }
