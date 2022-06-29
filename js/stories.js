@@ -25,6 +25,9 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+        <input type="checkbox" class="favorite-checkbox" ${
+          story.isFavorite() ? "checked" : ""
+        }>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -75,6 +78,8 @@ function putUserStoriesOnPage(user) {
   $allStoriesList.show();
 }
 
+/** For adding new stories */
+
 async function submitNewStory() {
   const title = $("#input-story-title").val();
   const author = $("#input-story-author").val();
@@ -89,4 +94,14 @@ async function submitNewStory() {
 $addStoryForm.on("submit", (evt) => {
   evt.preventDefault();
   submitNewStory();
+});
+
+/** Favorites and deleting */
+
+$allStoriesList.on("click", ".favorite-checkbox", function () {
+  const id = $(this).parent().attr("id");
+  const story = storyList.getStoryById(id);
+  story.isFavorite()
+    ? currentUser.removeFavorite(story)
+    : currentUser.addFavorite(story);
 });

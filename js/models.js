@@ -23,9 +23,14 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // UNIMPLEMENTED: complete this function!
     const url = new URL(this.url);
     return url.hostname;
+  }
+
+  isFavorite() {
+    return currentUser.favorites.some(
+      (favorite) => favorite.storyId === this.storyId
+    );
   }
 }
 
@@ -63,6 +68,10 @@ class StoryList {
 
     // build an instance of our own class using the new array of stories
     return new StoryList(stories);
+  }
+
+  getStoryById(id) {
+    return this.stories.find((story) => story.storyId === id);
   }
 
   /** Adds story data to API, makes a Story instance, adds it to story list.
