@@ -59,9 +59,9 @@ function putFavoritesOnPage() {
 
   $allStoriesList.empty();
 
-  currentUser.favorites.forEach((story) =>
-    $allStoriesList.append(generateStoryMarkup(story))
-  );
+  currentUser.favorites.forEach(function (story) {
+    $allStoriesList.append(generateStoryMarkup(story));
+  });
 
   $allStoriesList.show();
 }

@@ -218,7 +218,7 @@ class User {
       `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
       { token: this.loginToken }
     );
-    this.favorites = res.data.user.favorites;
+    this.favorites = res.data.user.favorites.map((s) => new Story(s));
     return res;
   }
 
@@ -227,7 +227,7 @@ class User {
       `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
       { data: { token: this.loginToken } }
     );
-    this.favorites = res.data.user.favorites;
+    this.favorites = res.data.user.favorites.map((s) => new Story(s));
     return res;
   }
 }
