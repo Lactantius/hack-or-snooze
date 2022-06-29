@@ -192,12 +192,17 @@ class User {
     }
   }
 
-  addFavorite(story) {
-    this.favorites.push(story);
+  /******************************************************************************
+   * Favorites
+   */
+
+  async addFavorite(story) {
+    const res = await axios.post(
+      `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      { token: this.loginToken }
+    );
+    return res;
   }
 
-  removeFavorite(story) {
-    const index = this.favorites.findIndex((fav) => fav.id === story.id);
-    this.favorites.splice(index, 1);
-  }
+  removeFavorite(story) {}
 }
