@@ -28,13 +28,17 @@ class Story {
   }
 
   isFavorite() {
-    return currentUser.favorites.some(
-      (favorite) => favorite.storyId === this.storyId
-    );
+    if (currentUser) {
+      return currentUser.favorites.some(
+        (favorite) => favorite.storyId === this.storyId
+      );
+    }
   }
 
   isOwn() {
-    return currentUser.ownStories.some((s) => s.storyId === this.storyId);
+    if (currentUser) {
+      return currentUser.ownStories.some((s) => s.storyId === this.storyId);
+    }
   }
 }
 
@@ -99,8 +103,9 @@ class StoryList {
     const res = await axios.delete(`${BASE_URL}/stories/${story.storyId}`, {
       data: { token: user.loginToken },
     });
-    const index = user.ownStories.findIndex((s) => s.storyId === story.storyId);
-    user.ownStories.splice(index, 1);
+    user.ownStories = user.ownStories.filter(
+      (s) => s.storyId !== story.storyId
+    );
     return res;
   }
 }
